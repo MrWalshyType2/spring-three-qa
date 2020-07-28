@@ -1,16 +1,20 @@
 package com.example.persistence.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan
+@Entity
+@Table(name = "accounts")
 public class Account {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(unique=true, nullable=false)

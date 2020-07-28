@@ -11,7 +11,7 @@ public class AccountAlreadyExistsException extends RuntimeException {
 	private static final Logger logger = Logger.getLogger(AccountAlreadyExistsException.class.getName());
 
 	public AccountAlreadyExistsException(String string) {
-		logger.log(Level.DEBUG, "Account already exists!");
+		logger.log(Level.DEBUG, string);
 	}
 
 	/**

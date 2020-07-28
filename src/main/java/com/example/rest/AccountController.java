@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.tomcat.util.digester.ArrayStack;
 import org.jboss.logging.Logger;
 import org.jboss.logging.Logger.Level;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,9 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.exceptions.AccountAlreadyExistsException;
 import com.example.persistence.domain.Account;
+import com.example.services.IAccountService;
 
 @RestController
 public class AccountController {
+	
+	@Autowired
+	private IAccountService accountService;
 	
 	private static final Logger logger = Logger.getLogger(AccountController.class.getName());
 	private static ArrayList<Account> accounts = new ArrayList<>() {
@@ -46,7 +51,7 @@ public class AccountController {
 
 	@GetMapping("/getAll")
 	public List<Account> getAllAccounts() {
-		return AccountController.accounts;
+		return accountService.findAll();
 	}
 	
 	@GetMapping("/get/{id}")
